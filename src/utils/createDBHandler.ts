@@ -11,8 +11,13 @@ export default function createDBHandler() {
     return await notes.create(note);
   }
 
+  async function updateNote(id: string, note: Note) {
+    return await notes.updateOne({ _id: id }, note);
+  }
+
   return {
     readAllNotes,
     createNote,
+    updateNote,
   };
 }

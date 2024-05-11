@@ -32,4 +32,21 @@ router.post("/create", (req: Request, res: Response) => {
   }
 });
 
+router.post("/update/:id", (req: Request, res: Response) => {
+  try {
+    const id = req.params.id;
+    const note = {
+      title: req.body.title,
+      body: req.body.body || null,
+      dateWritten: new Date(),
+    };
+    dbHandler.updateNote(id, note).then(() => {
+      console.log(`${note.title} updated`);
+      res.send(`${note.title} updated`);
+    });
+  } catch (e) {
+    console.log(e);
+  }
+});
+
 export default router;
