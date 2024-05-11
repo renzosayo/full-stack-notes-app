@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const NoteSchema = new mongoose.Schema({
   title: String,
@@ -6,4 +6,4 @@ const NoteSchema = new mongoose.Schema({
   dateWritten: Date,
 });
 
-module.exports = mongoose.model("notes", NoteSchema);
+export default mongoose.model("notes", NoteSchema);
