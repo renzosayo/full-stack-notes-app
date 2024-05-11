@@ -49,4 +49,16 @@ router.post("/update/:id", (req: Request, res: Response) => {
   }
 });
 
+router.post("/delete/:id", (req: Request, res: Response) => {
+  try {
+    const id = req.params.id;
+    dbHandler.deleteNote(id).then(() => {
+      console.log(`${id} deleted`);
+      res.send(`${id} deleted`);
+    });
+  } catch (e) {
+    console.log(e);
+  }
+});
+
 export default router;

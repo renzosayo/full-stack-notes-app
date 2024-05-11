@@ -15,9 +15,14 @@ export default function createDBHandler() {
     return await notes.updateOne({ _id: id }, note);
   }
 
+  async function deleteNote(id: string) {
+    return await notes.deleteOne({ _id: id });
+  }
+
   return {
     readAllNotes,
     createNote,
     updateNote,
+    deleteNote,
   };
 }
