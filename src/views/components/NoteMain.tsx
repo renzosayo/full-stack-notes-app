@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Note } from "../../utils/types";
 import NoteCard from "./NoteCard";
+import { Link } from "react-router-dom";
 
 export default function NoteMain() {
   const [notes, setNotes] = useState<Note[]>([]);
@@ -18,10 +19,11 @@ export default function NoteMain() {
   }, []);
 
   return (
-    <div className="main">
+    <div className="note-main">
       {notes.map((note, index) => {
         return <NoteCard key={index as React.Key} note={note} />;
       })}
+      <Link to="/note/create">Create note...</Link>
     </div>
   );
 }
