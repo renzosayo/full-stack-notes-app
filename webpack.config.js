@@ -1,6 +1,5 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const NodemonPlugin = require("nodemon-webpack-plugin");
 
 module.exports = {
   entry: path.resolve(__dirname, "./src/index.tsx"),
@@ -40,7 +39,6 @@ module.exports = {
       title: "",
       template: "./src/views/index.html",
     }),
-    new NodemonPlugin(),
   ],
   mode: "development",
 };
