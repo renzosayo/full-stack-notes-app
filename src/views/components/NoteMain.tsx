@@ -13,17 +13,17 @@ export default function NoteMain() {
         return res.json();
       })
       .then((data: Note[]) => {
-        console.log(data);
         setNotes(data);
       });
-  }, []);
+  }, [notes]);
 
   return (
-    <div className="note-main">
-      {notes.map((note, index) => {
-        return <NoteCard key={index as React.Key} note={note} />;
-      })}
-      <Link to="/note/create">Create note...</Link>
-    </div>
+    <>
+      <div className="note-main main">
+        {notes.map((note, index) => {
+          return <NoteCard key={index as React.Key} note={note} />;
+        })}
+      </div>
+    </>
   );
 }
