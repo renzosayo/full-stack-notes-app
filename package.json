@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server",
     "build": "webpack",
-    "serve": "nodemon src/server/index.ts"
+    "server": "nodemon src/server/index.ts"
   },
   "keywords": [],
   "author": "",
