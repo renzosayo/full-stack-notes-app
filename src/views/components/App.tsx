@@ -9,6 +9,7 @@ import Button from "./Button";
 import { handleSaveNewNote } from "../../utils/handleEvent";
 import { RouterProvider, createHashRouter } from "react-router-dom";
 import { createContext } from "react";
+import NoteView from "./NoteView";
 
 export const NoteContext = createContext(
   {} as {
@@ -66,8 +67,36 @@ const router = createHashRouter([
             </>
           }
         />
-
         <NoteCreate />
+      </>
+    ),
+  },
+  {
+    path: "/note/view",
+    element: (
+      <>
+        <UtilityBar
+          children={
+            <>
+              <Button
+                props={{
+                  symbol: "❌",
+                  text: "Discard changes and go back",
+                  destination: "/",
+                }}
+              />
+              <Button
+                props={{
+                  symbol: "💾",
+                  text: "Save changes",
+                  destination: "/",
+                  handleClick: handleSaveNewNote,
+                }}
+              />
+            </>
+          }
+        />
+        <NoteView />
       </>
     ),
   },

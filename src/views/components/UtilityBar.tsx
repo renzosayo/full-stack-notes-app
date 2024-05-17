@@ -5,5 +5,5 @@ export default function UtilityBar({
 }: {
   children: React.JSX.Element;
 }) {
-  return <div className="utility-bar">{children}</div>;
+  return <div className="utility-bar front">{children}</div>;
 }
