@@ -5,11 +5,10 @@ import NoteMain from "./NoteMain";
 import NoteCreate from "./NoteCreate";
 import NotFound from "./NotFound";
 import UtilityBar from "./UtilityBar";
-import Button from "./Button";
-import { handleSaveNewNote } from "../../utils/handleEvent";
 import { RouterProvider, createHashRouter } from "react-router-dom";
 import { createContext } from "react";
 import NoteView from "./NoteView";
+import { utilityBarButtons } from "../../utils/utilityBarButtons";
 
 export const NoteContext = createContext(
   {} as {
@@ -24,100 +23,24 @@ export const NoteContext = createContext(
 const router = createHashRouter([
   {
     path: "/",
-    element: (
-      <>
-        <UtilityBar
-          children={
-            <Button
-              props={{
-                symbol: "📝",
-                text: "New note",
-                destination: "/note/create",
-              }}
-            />
-          }
-        />
-        <NoteMain />
-      </>
-    ),
+    element: <NoteMain utilityBarChildren={utilityBarButtons["mainPage"]} />,
     index: true,
   },
   {
     path: "/note/create",
     element: (
-      <>
-        <UtilityBar
-          children={
-            <>
-              <Button
-                props={{
-                  symbol: "❌",
-                  text: "Discard note and go back",
-                  destination: "/",
-                }}
-              />
-              <Button
-                props={{
-                  symbol: "💾",
-                  text: "Save note",
-                  destination: "/",
-                  handleClick: handleSaveNewNote,
-                }}
-              />
-            </>
-          }
-        />
-        <NoteCreate />
-      </>
+      <NoteCreate utilityBarChildren={utilityBarButtons["newNotePage"]} />
     ),
   },
   {
     path: "/note/view",
     element: (
-      <>
-        <UtilityBar
-          children={
-            <>
-              <Button
-                props={{
-                  symbol: "❌",
-                  text: "Discard changes and go back",
-                  destination: "/",
-                }}
-              />
-              <Button
-                props={{
-                  symbol: "💾",
-                  text: "Save changes",
-                  destination: "/",
-                  handleClick: handleSaveNewNote,
-                }}
-              />
-            </>
-          }
-        />
-        <NoteView />
-      </>
+      <NoteView utilityBarChildren={utilityBarButtons["viewNotePage"]} />
     ),
   },
   {
     path: "*",
-    element: (
-      <>
-        <UtilityBar
-          children={
-            <Button
-              props={{
-                symbol: "⬅️",
-                text: "Go back",
-                destination: "/",
-              }}
-            />
-          }
-        />
-        <NotFound />
-      </>
-    ),
+    element: <NotFound utilityBarChildren={utilityBarButtons["errorPage"]} />,
   },
 ]);
 
