@@ -11,7 +11,11 @@ export default function createDBHandler() {
     return await notes.create(note);
   }
 
-  async function updateNote(id: string, note: Note) {
+  // avoid including "_id" to body to prevent "immutable" error
+  async function updateNote(
+    id: string,
+    note: { title: string; body: string; dateWritten: Date }
+  ) {
     return await notes.updateOne({ _id: id }, note);
   }
 

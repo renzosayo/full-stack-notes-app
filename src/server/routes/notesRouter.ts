@@ -19,6 +19,7 @@ router.get("/", (req: Request, res: Response) => {
 router.post("/create", (req: Request, res: Response) => {
   try {
     const newNote: Note = {
+      _id: null,
       title: req.body.title,
       body: req.body.body || null,
       dateWritten: new Date(),
@@ -34,6 +35,7 @@ router.post("/create", (req: Request, res: Response) => {
 
 router.post("/update/:id", (req: Request, res: Response) => {
   try {
+    console.log("update");
     const id = req.params.id;
     const note = {
       title: req.body.title,
