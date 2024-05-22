@@ -1,3 +1,6 @@
+const HOSTNAME = "localhost";
+const PORT = 3000;
+
 export function handleSaveNewNote({
   title,
   body,
@@ -5,7 +8,7 @@ export function handleSaveNewNote({
   title: string;
   body: string;
 }): void {
-  const URI = "http://localhost:3000/notes/create";
+  const URI = `http://${HOSTNAME}:${PORT}/notes/`;
   Promise.resolve(callApi(URI, "POST", JSON.stringify({ title, body })));
 }
 
@@ -18,9 +21,13 @@ export function handleClickUpdateNote({
   title: string;
   body: string;
 }) {
-  const URI = `http://localhost:3000/notes/update/${_id}`;
-  alert(URI);
-  Promise.resolve(callApi(URI, "POST", JSON.stringify({ title, body })));
+  const URI = `http://${HOSTNAME}:${PORT}/notes/`;
+  Promise.resolve(callApi(URI, "PUT", JSON.stringify({ title, body, _id })));
+}
+
+export function handleClickDeleteNote({ _id }: { _id: string }) {
+  const URI = `http://${HOSTNAME}:${PORT}/notes/`;
+  Promise.resolve(callApi(URI, "POST", JSON.stringify({ _id })));
 }
 
 export async function callApi(URI: string, method?: string, body?: string) {
