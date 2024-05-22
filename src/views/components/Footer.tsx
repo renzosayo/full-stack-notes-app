@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <div className="footer center">
+    <div className="footer center front">
       <p className="footer__text">
         Created by{" "}
         <a
