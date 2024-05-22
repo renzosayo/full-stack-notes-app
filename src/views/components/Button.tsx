@@ -13,7 +13,6 @@ export default function Button({
   };
 }) {
   const { selectedNote } = useContext(NoteContext);
-  console.log(selectedNote);
 
   return (
     <Link
