@@ -51,7 +51,7 @@ router
   })
   .delete("/", (req: Request, res: Response) => {
     try {
-      const id: string = req.body.id;
+      const id: string = req.body._id;
       dbHandler.deleteNote(id).then(() => {
         console.log(`${id} deleted`);
         res.send(`${id} deleted`);

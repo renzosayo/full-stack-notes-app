@@ -27,7 +27,7 @@ export function handleClickUpdateNote({
 
 export function handleClickDeleteNote({ _id }: { _id: string }) {
   const URI = `http://${HOSTNAME}:${PORT}/notes/`;
-  Promise.resolve(callApi(URI, "POST", JSON.stringify({ _id })));
+  Promise.resolve(callApi(URI, "DELETE", JSON.stringify({ _id })));
 }
 
 export async function callApi(URI: string, method?: string, body?: string) {
