@@ -38,7 +38,7 @@ export default function NoteView({
           onChange={(e) =>
             setSelectedNote({ ...selectedNote, title: e.target.value })
           }
-          value={selectedNote.title}
+          value={selectedNote.title || ""}
         />
         <textarea
           className="note-view__body note-input shadow"
@@ -48,7 +48,7 @@ export default function NoteView({
           onChange={(e) =>
             setSelectedNote({ ...selectedNote, body: e.target.value })
           }
-          value={selectedNote.body}
+          value={selectedNote.body || ""}
         ></textarea>
       </div>
     </>
