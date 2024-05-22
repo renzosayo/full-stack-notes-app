@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Note } from "../../utils/types";
 import NoteCard from "./NoteCard";
 import UtilityBar from "./UtilityBar";
+import { callApi } from "../../utils/handleEvent";
 
 export default function NoteMain({
   utilityBarChildren,
@@ -12,14 +13,14 @@ export default function NoteMain({
   const URI = "http://localhost:3000/notes";
 
   useEffect(() => {
-    fetch(URI)
+    callApi(URI)
       .then((res: Response) => {
         return res.json();
       })
       .then((data: Note[]) => {
         setNotes(data);
       });
-  }, [notes]);
+  }, []);
 
   return (
     <>

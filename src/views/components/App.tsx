@@ -4,18 +4,16 @@ import Footer from "./Footer";
 import NoteMain from "./NoteMain";
 import NoteCreate from "./NoteCreate";
 import NotFound from "./NotFound";
-import UtilityBar from "./UtilityBar";
 import { RouterProvider, createHashRouter } from "react-router-dom";
 import { createContext } from "react";
 import NoteView from "./NoteView";
 import { utilityBarButtons } from "../../utils/utilityBarButtons";
+import { Note } from "../../utils/types";
 
-export const NoteContext = createContext(
+export const StateContext = createContext(
   {} as {
-    title: string;
-    setTitle: React.Dispatch<React.SetStateAction<string>>;
-    body: string;
-    setBody: React.Dispatch<React.SetStateAction<string>>;
+    note: Note;
+    setNote: React.Dispatch<React.SetStateAction<Note>>;
   }
 );
 
@@ -45,15 +43,15 @@ const router = createHashRouter([
 ]);
 
 function App() {
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
+  // title and body initialized to prevent "uncontrolled input" error
+  const [note, setNote] = useState<Note>({ title: "", body: "" } as Note);
 
   return (
     <div className="container">
       <Header />
-      <NoteContext.Provider value={{ title, setTitle, body, setBody }}>
+      <StateContext.Provider value={{ note, setNote }}>
         <RouterProvider router={router} />
-      </NoteContext.Provider>
+      </StateContext.Provider>
       <Footer />
     </div>
   );

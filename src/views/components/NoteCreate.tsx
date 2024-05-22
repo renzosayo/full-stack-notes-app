@@ -1,22 +1,30 @@
 import React, { useContext, useEffect } from "react";
-import { NoteContext } from "./App";
+import { StateContext } from "./App";
 import UtilityBar from "./UtilityBar";
+import { NoteContext } from "./NoteView";
 
 export default function NoteCreate({
   utilityBarChildren,
 }: {
   utilityBarChildren: React.JSX.Element;
 }) {
-  const { title, setTitle, body, setBody } = useContext(NoteContext);
+  const { note, setNote } = useContext(StateContext);
 
   useEffect(() => {
-    setTitle("");
-    setBody("");
+    setNote({
+      _id: null,
+      title: "",
+      body: "",
+      dateWritten: new Date(),
+    });
   }, []);
 
   return (
     <>
-      <UtilityBar children={utilityBarChildren} />
+      <NoteContext.Provider value={{ selectedNote: note }}>
+        <UtilityBar children={utilityBarChildren} />
+      </NoteContext.Provider>
+
       <div className="note-create main front">
         <input
           className="note-create__title note-input shadow"
@@ -24,16 +32,18 @@ export default function NoteCreate({
           name="title"
           id="title"
           placeholder="Enter title..."
-          onChange={(e) => setTitle(e.target.value)}
-          value={title}
+          onChange={(e) => {
+            setNote({ ...note, title: e.target.value });
+          }}
+          value={note.title}
         />
         <textarea
           className="note-create__body note-input shadow"
           name="body"
           id="body"
           placeholder="Remember, remember..."
-          onChange={(e) => setBody(e.target.value)}
-          value={body}
+          onChange={(e) => setNote({ ...note, body: e.target.value })}
+          value={note.body}
         ></textarea>
       </div>
     </>

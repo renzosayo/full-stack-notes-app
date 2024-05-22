@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../views/components/Button";
-import { handleClickViewNote, handleSaveNewNote } from "./handleEvent";
+import { handleClickUpdateNote, handleSaveNewNote } from "./handleEvent";
 
 export const utilityBarButtons = {
   mainPage: (
@@ -45,7 +45,7 @@ export const utilityBarButtons = {
           symbol: "💾",
           text: "Save changes",
           destination: "/",
-          handleClick: handleClickViewNote,
+          handleClick: handleClickUpdateNote,
         }}
       />
     </>

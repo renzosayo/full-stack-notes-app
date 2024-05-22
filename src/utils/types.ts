@@ -1,5 +1,6 @@
 export type Note = {
-  title: String;
-  body: String;
+  _id: string | null;
+  title: string;
+  body: string;
   dateWritten: Date;
 };
